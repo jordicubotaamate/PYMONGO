@@ -21,14 +21,11 @@ class App:
         self.screen1(master)
         
     #probar a conectar
-    def connect(self, u, p):
+    def connect(self, u, p, worked):
         username = u.get()
         password = hashlib.sha512(p.get()).hexdigest() #p.get()
         
         worked = loginQuery(username, password)
-        if worked:
-            self.cleanFrame(master)
-            self.screen(master)
 
     #def login(user, pass):
     def cleanFrame(self, frame):
@@ -66,7 +63,13 @@ class App:
         Epass.pack(side = LEFT)
 
         #button
-        btLogin = Button(f3, text="Connect", command= lambda: self.connect(u, p), width=w/60)
+        worked = True
+        btLogin = Button(f3, text="Connect", command= lambda: self.connect(u, p, worked), width=w/60)
+
+        if worked:
+            self.cleanFrame(master)
+            print("FUNCA")
+            #self.screen(master)
         btLogin.pack(side=LEFT)
 
     #def screen2(self, master)
