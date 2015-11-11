@@ -28,6 +28,7 @@ class App:
 
         if worked:
             self.cleanFrame(master)
+        
         else:
             f4.place(in_=master, anchor="c", relx=.5, rely=.525)
 
