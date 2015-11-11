@@ -20,7 +20,7 @@ class App:
         self.screen1(master)
         
     #probar a conectar
-    def connect(self, u, p, master):
+    def connect(self, u, p, master, f4):
         username = u.get()
         password = hashlib.sha512(p.get()).hexdigest() #p.get()
         
@@ -28,6 +28,8 @@ class App:
 
         if worked:
             self.cleanFrame(master)
+        else:
+            f4.place(in_=master, anchor="c", relx=.5, rely=.525)
 
     #def login(user, pass):
     def cleanFrame(self, frame):
@@ -50,6 +52,10 @@ class App:
         f3.pack()
         f3.place(in_=master, anchor="c", relx=.5, rely=.65)
 
+        f4 = Frame(master)
+        f4.pack()
+        f4.place(in_=master, anchor="c", relx=.5, rely=.525)
+
         #username
         Luser = Label(f1, text="Username", bg="white")
         Luser.pack( side = LEFT)
@@ -58,17 +64,20 @@ class App:
         Euser.pack(side = LEFT)
 
         #password
-        Lpass = Label(f2, text="Password ", bg="white")
+        Lpass = Label(f2, text="Password ", bg="white",)
         Lpass.pack( side = LEFT)
         p = StringVar()
         Epass = Entry(f2, bd =5, show="*", textvariable=p)
         Epass.pack(side = LEFT)
 
         #button
-       
-        btLogin = Button(f3, text="Connect", command= lambda: self.connect(u, p, master), width=w/60)
+        btLogin = Button(f3, text="Connect", command= lambda: self.connect(u, p, master, f4), width=w/60)
         btLogin.pack(side=LEFT)
 
+        #Label error login
+        Lerr = Label(f4, text="User or password error", bg="white", fg="red")
+        Lerr.pack( side = LEFT)
+        f4.place_forget()
 
         #self.screen(master)
         
