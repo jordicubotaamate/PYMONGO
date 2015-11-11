@@ -1,3 +1,5 @@
+#CLASSE TEST!!!
+
 from querys import citiesQuery,loginQuery,registerQuery
 import hashlib
 
