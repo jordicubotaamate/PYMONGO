@@ -4,7 +4,6 @@ from querys import loginQuery
 import hashlib
 
 class App:
-    
 
     def __init__(self, master):
 
@@ -21,11 +20,14 @@ class App:
         self.screen1(master)
         
     #probar a conectar
-    def connect(self, u, p, worked):
+    def connect(self, u, p, master):
         username = u.get()
         password = hashlib.sha512(p.get()).hexdigest() #p.get()
         
         worked = loginQuery(username, password)
+
+        if worked:
+            self.cleanFrame(master)
 
     #def login(user, pass):
     def cleanFrame(self, frame):
@@ -63,14 +65,13 @@ class App:
         Epass.pack(side = LEFT)
 
         #button
-        worked = True
-        btLogin = Button(f3, text="Connect", command= lambda: self.connect(u, p, worked), width=w/60)
-
-        if worked:
-            self.cleanFrame(master)
-            print("FUNCA")
-            #self.screen(master)
+       
+        btLogin = Button(f3, text="Connect", command= lambda: self.connect(u, p, master), width=w/60)
         btLogin.pack(side=LEFT)
+
+
+        #self.screen(master)
+        
 
     #def screen2(self, master)
 
