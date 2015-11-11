@@ -1,4 +1,5 @@
 from Tkinter import *
+from querys import loginQuery
 
 import hashlib
 
@@ -68,8 +69,5 @@ class App:
         btLogin = Button(f3, text="Connect", command= lambda: self.connect(u, p), width=w/60)
         btLogin.pack(side=LEFT)
 
-    def screen2(self, master)
-global master 
-master = Tk()
-app = App(master)
-master.mainloop()
+    #def screen2(self, master)
+
